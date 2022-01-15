@@ -1,6 +1,6 @@
 class Solution {
     public boolean canArrange(int[] arr, int k) {
-        HashMap<Integer,Integer> h1=new HashMap<>();
+            HashMap<Integer,Integer> h1=new HashMap<>();
         int temp=0;
         for(int itr1=0;itr1<arr.length;itr1++){
             temp=((arr[itr1]%k)+k)%k;
@@ -12,7 +12,7 @@ class Solution {
         for(Map.Entry<Integer,Integer> e1 : h1.entrySet()){
             key=e1.getKey();
             val=e1.getValue();
-            rem=(((k-key)%k)+k)%k;
+            rem=(k-key)%k;
             if(key==0 && h1.get(0)%2==1){
                 return false;
             }else if(h1.get(rem)==null || h1.get(rem)!=val){
@@ -20,5 +20,6 @@ class Solution {
             }
         }
         return true;
+    
     }
 }
