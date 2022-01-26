@@ -23,10 +23,11 @@ class Solution {
            if(root==null){
             return;
         }
-        
+        if(!m1.containsKey(ht)){
             m1.put(ht,root.val);
-        
-        rightView(root.left,ht+1,m1);
+        }
         rightView(root.right,ht+1,m1);
+        rightView(root.left,ht+1,m1);
+        
     }
 }
