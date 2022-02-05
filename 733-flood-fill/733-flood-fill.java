@@ -1,21 +1,27 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        
         if(image[sr][sc]==newColor){
             return image;
         }
-        floodFillAlgo(image,sr,sc,newColor,image[sr][sc]);
-        return image;
-    }
-    
-    private void floodFillAlgo(int[][] image,int sr,int sc,int newColor,int srcColor){
-        if(sr<0 || sc<0 || sr>=image.length || sc>=image[0].length || image[sr][sc]!=srcColor){
-            return;
+        Queue<Pair<Integer,Integer>> q1=new LinkedList<>();
+        q1.add(new Pair<>(sr,sc));
+        
+        int srcColor=image[sr][sc];
+        
+        while(!q1.isEmpty()){
+            Pair<Integer,Integer> p1=q1.remove();
+            int dup_sr=p1.getKey();
+            int dup_sc=p1.getValue();
+            if(dup_sr<0 || dup_sc<0 || dup_sr>=image.length || dup_sc>=image[0].length || image[dup_sr][dup_sc]!=srcColor){
+                continue;
+            }
+            image[dup_sr][dup_sc]=newColor;
+            q1.add(new Pair<>(dup_sr-1,dup_sc));
+            q1.add(new Pair<>(dup_sr+1,dup_sc));
+            q1.add(new Pair<>(dup_sr,dup_sc-1));
+            q1.add(new Pair<>(dup_sr,dup_sc+1));
         }
-        image[sr][sc]=newColor;
-        floodFillAlgo(image,sr-1,sc,newColor,srcColor);
-        floodFillAlgo(image,sr+1,sc,newColor,srcColor);
-        floodFillAlgo(image,sr,sc-1,newColor,srcColor);
-        floodFillAlgo(image,sr,sc+1,newColor,srcColor);
-        return;
+        return image;
     }
 }
