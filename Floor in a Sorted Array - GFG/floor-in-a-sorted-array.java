@@ -40,22 +40,22 @@ class Solution{
     {
         int start=0;
         int end=arr.length-1;
-        int ans=-1;
-        int mid;
         
+        int mid;
+        int answer=-1;
         while(start<=end){
             mid=(start+end)/2;
+            
             if(arr[mid]==x){
                 return mid;
             }else if(arr[mid]<x){
-                ans=mid;
+                answer=mid;
                 start=mid+1;
             }else{
                 end=mid-1;
             }
         }
-        return ans;
-        
+        return answer;
     }
     
 }
