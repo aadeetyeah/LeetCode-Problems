@@ -1,22 +1,21 @@
 class Solution {
-    public int searchInsert(int[] arr, int x) {
+    public int searchInsert(int[] nums, int target) {
         int start=0;
-        int end=arr.length-1;
-        int ans=-1;
-        int mid;
+        int end=nums.length-1;
         
+        int mid;
+        int answer=-1;
         while(start<=end){
             mid=(start+end)/2;
-            if(arr[mid]==x){
+            if(nums[mid]==target){
                 return mid;
-            }else if(arr[mid]<x){
-                
+            }else if(nums[mid]<target){
                 start=mid+1;
             }else{
-                ans=mid;
+                answer=mid;
                 end=mid-1;
             }
         }
-        return ans==-1?arr.length:ans;
+        return answer==-1?nums.length:answer;
     }
 }
