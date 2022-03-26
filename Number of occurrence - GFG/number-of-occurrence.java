@@ -35,30 +35,30 @@ public class Main {
 
 
 class Solution {
-    int count(int[] arr, int n, int x) {
-        // code here
+    int count(int[] nums, int n, int target) {
+         int[] ans=new int[2];
+        Arrays.fill(ans,-1);
         
-        int first=firstPosition(arr,x);
-        if(first==-1){
+        ans[0]=getFirstIndex(nums,target);
+        if(ans[0]==-1){
             return 0;
         }
-        int last=lastPosition(arr,x);
-        return (last-first)+1;
-        
+        ans[1]=getLastIndex(nums,target);
+        return (ans[1]-ans[0])+1;
     }
     
-    int firstPosition(int[] arr,int x){
+    int getFirstIndex(int nums[],int target){
         int start=0;
-        int end=arr.length-1;
+        int end=nums.length-1;
         
-        int answer=-1;
         int mid;
+        int answer=-1;
         while(start<=end){
             mid=(start+end)/2;
-            if(arr[mid]==x){
+            if(nums[mid]==target){
                 answer=mid;
                 end=mid-1;
-            }else if(arr[mid]<x){
+            }else if(nums[mid]<target){
                 start=mid+1;
             }else{
                 end=mid-1;
@@ -67,19 +67,20 @@ class Solution {
         return answer;
     }
     
-    int lastPosition(int[] arr,int x){
+    int getLastIndex(int nums[],int target){
         int start=0;
-        int end=arr.length-1;
+        int end=nums.length-1;
         
-        int answer=-1;
         int mid;
+        int answer=-1;
         
         while(start<=end){
             mid=(start+end)/2;
-            if(arr[mid]==x){
+            
+            if(nums[mid]==target){
                 answer=mid;
                 start=mid+1;
-            }else if(arr[mid]<x){
+            }else if(nums[mid]<target){
                 start=mid+1;
             }else{
                 end=mid-1;
