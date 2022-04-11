@@ -1,27 +1,23 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        
         if(image[sr][sc]==newColor){
             return image;
         }
-        Queue<Pair<Integer,Integer>> q1=new LinkedList<>();
-        q1.add(new Pair<>(sr,sc));
-        
-        int srcColor=image[sr][sc];
-        
-        while(!q1.isEmpty()){
-            Pair<Integer,Integer> p1=q1.remove();
-            int dup_sr=p1.getKey();
-            int dup_sc=p1.getValue();
-            if(dup_sr<0 || dup_sc<0 || dup_sr>=image.length || dup_sc>=image[0].length || image[dup_sr][dup_sc]!=srcColor){
-                continue;
-            }
-            image[dup_sr][dup_sc]=newColor;
-            q1.add(new Pair<>(dup_sr-1,dup_sc));
-            q1.add(new Pair<>(dup_sr+1,dup_sc));
-            q1.add(new Pair<>(dup_sr,dup_sc-1));
-            q1.add(new Pair<>(dup_sr,dup_sc+1));
-        }
+        fillNewColor(sr,sc,image[sr][sc],newColor,image);
         return image;
+    }
+    
+    private void fillNewColor(int sr,int sc,int currentColor,int newColor,int[][] image){
+        
+        if(sr<0 || sr>=image.length || sc<0 || sc>=image[0].length || image[sr][sc]!=currentColor){
+            return;
+        }
+        image[sr][sc]=newColor;
+        
+        fillNewColor(sr+1,sc,currentColor,newColor,image);
+        fillNewColor(sr-1,sc,currentColor,newColor,image);
+        fillNewColor(sr,sc+1,currentColor,newColor,image);
+        fillNewColor(sr,sc-1,currentColor,newColor,image);
+        return;
     }
 }
