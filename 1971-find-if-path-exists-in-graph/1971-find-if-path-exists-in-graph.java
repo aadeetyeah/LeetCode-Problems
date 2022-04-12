@@ -1,28 +1,42 @@
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        ArrayList<ArrayList<Integer>> arr=new ArrayList<>();
-        
+        HashMap<Integer,List<Integer>> graph=new HashMap<>();
         for(int itr1=0;itr1<n;itr1++){
-            arr.add(new ArrayList<Integer>());
+            graph.put(itr1,new ArrayList<Integer>());
         }
-        for(int itr1=0;itr1<edges.length;itr1++){
-            arr.get(edges[itr1][0]).add(edges[itr1][1]);
-            arr.get(edges[itr1][1]).add(edges[itr1][0]);
-        }
-        int visited[]=new int[n];
+        createGraph(graph,edges);
+        
+        return checkPath(source,destination,graph);
+    }
+    
+    private boolean checkPath(int source,int destination,Map<Integer,List<Integer>> graph){
         Queue<Integer> q1=new LinkedList<>();
         q1.add(source);
+        int visited[]=new int[graph.size()];
+        
         while(!q1.isEmpty()){
-            int temp=q1.remove();
-            visited[temp]=1;
-            if(temp==destination){
+            int currentNode=q1.remove();
+            
+            if(currentNode==destination){
                 return true;
             }
-            for(Integer i : arr.get(temp)){
-                if(visited[i]==0)
-                    q1.add(i);
+            visited[currentNode]=1;
+            for(Integer itr1 : graph.get(currentNode)){
+                if(visited[itr1]==0){
+                    q1.add(itr1);
+                }
             }
+            
         }
         return false;
+    }
+    
+    private void createGraph(Map<Integer,List<Integer>> graph,int[][] edges){
+        for(int itr1=0;itr1<edges.length;itr1++){
+            int u=edges[itr1][0];
+            int v=edges[itr1][1];
+            graph.get(u).add(v);
+            graph.get(v).add(u);
+        }
     }
 }
