@@ -5,11 +5,32 @@ class Solution {
             graph.put(itr1,new ArrayList<Integer>());
         }
         createGraph(graph,edges);
-        
-        return checkPath(source,destination,graph);
+        int visited[]=new int[n];
+        return checkPath(source,destination,visited,graph);
     }
     
-    private boolean checkPath(int source,int destination,Map<Integer,List<Integer>> graph){
+    //Recursive Approach
+    private boolean checkPath(int src,int dest,int visited[],Map<Integer,List<Integer>> graph){
+        visited[src]=1;
+        if(src==dest){
+            return true;
+        }
+        
+        
+        for(Integer itr1 : graph.get(src)){
+            if(visited[itr1]==0){
+                if(checkPath(itr1,dest,visited,graph)){
+                    return true;
+                }
+            }
+        }
+       
+        return false;
+    }
+    
+    
+    //Iterative Approach
+    /*private boolean checkPath(int source,int destination,Map<Integer,List<Integer>> graph){
         Queue<Integer> q1=new LinkedList<>();
         q1.add(source);
         int visited[]=new int[graph.size()];
@@ -29,7 +50,7 @@ class Solution {
             
         }
         return false;
-    }
+    }*/
     
     private void createGraph(Map<Integer,List<Integer>> graph,int[][] edges){
         for(int itr1=0;itr1<edges.length;itr1++){
