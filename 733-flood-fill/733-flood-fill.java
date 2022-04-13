@@ -4,9 +4,25 @@ class Solution {
         if(image[sr][sc]==newColor){
             return image;
         }
-        iterativeFloodFill(image,sr,sc,newColor);
+        //iterativeFloodFill(image,sr,sc,newColor);
+        recursiveFloodFill(sr,sc,image[sr][sc],newColor,image,image.length,image[0].length);
         return image;
+    }   
+    
+    private void recursiveFloodFill(int sr,int sc,int currentColor,int newColor,int image[][],int m,int n){
+        if(sr<0 || sc<0 || sr>=m || sc>=n || image[sr][sc]!=currentColor){
+            return;
+        }
+        image[sr][sc]=newColor;
+        recursiveFloodFill(sr+1,sc,currentColor,newColor,image,m,n);
+        recursiveFloodFill(sr-1,sc,currentColor,newColor,image,m,n);
+        recursiveFloodFill(sr,sc+1,currentColor,newColor,image,m,n);
+        recursiveFloodFill(sr,sc-1,currentColor,newColor,image,m,n);
+        return;
     }
+    
+    
+    /* Iterative 
     private void iterativeFloodFill(int[][] image,int sr,int sc,int newColor){
         int currentColor=image[sr][sc];
         
@@ -32,5 +48,5 @@ class Solution {
             
         }
         return;
-    }
+    } */
 }
