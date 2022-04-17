@@ -38,21 +38,22 @@ class Solution {
                    int destination) {
         // Code here
         int visited[]=new int[V];
-        return noOfPaths(adj,source,destination,visited);
+        int count[]=new int[1];
+        noOfPaths(source,destination,adj,V,visited,count);
+        return count[0];
     }
     
-    private int noOfPaths(ArrayList<ArrayList<Integer>> graph,int src,int dest,int[] visited){
-        if(src==dest){
-            return 1;
+    private void noOfPaths(int start,int dest,ArrayList<ArrayList<Integer>> graph,int v,int visited[],int count[]){
+        
+        if(start==dest){
+            count[0]++;
+            return;
         }
-        visited[src]=1;
-        int count=0;
-        for(Integer itr1 : graph.get(src)){
+        for(Integer itr1 : graph.get(start)){
             if(visited[itr1]==0){
-                count+=noOfPaths(graph,itr1,dest,visited);
+                noOfPaths(itr1,dest,graph,v,visited,count);
             }
         }
-        visited[src]=0;
-        return count;
+        return;
     }
 }
