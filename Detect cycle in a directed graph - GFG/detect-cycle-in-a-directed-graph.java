@@ -34,30 +34,30 @@ class Solution {
     // Function to detect cycle in a directed graph.
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
         // code here
-        HashSet<Integer> visited=new HashSet<>();
-        HashSet<Integer> recStack=new HashSet<>();
+        int visited[]=new int[V];
+        int recstack[]=new int[V];
         for(int itr1=0;itr1<V;itr1++){
-            if(checkCyclic(visited,recStack,itr1,adj)){
-                return true;
+            if(visited[itr1]==0){
+                if(checkCycle(itr1,visited,recstack,adj)){
+                    return true;
+                }
             }
         }
         return false;
     }
-    
-    public boolean checkCyclic(Set<Integer> visited,Set<Integer> recStack,int src,ArrayList<ArrayList<Integer>> adj){
-        visited.add(src);
-        recStack.add(src);
-        List<Integer> l1 =adj.get(src);
-        for(Integer i1 : l1){
-            if(!visited.contains(i1)){
-            if(checkCyclic(visited,recStack,i1,adj)){
-                return true;
-            }
-            }else if(recStack.contains(i1)){
+    private boolean checkCycle(int start,int[] visited,int recstack[],ArrayList<ArrayList<Integer>> graph){
+        visited[start]=1;
+        recstack[start]=1;
+        for(Integer itr1 : graph.get(start)){
+            if(visited[itr1]==0){
+                if(checkCycle(itr1,visited,recstack,graph)){
+                    return true;
+                }
+            }else if(recstack[itr1]==1){
                 return true;
             }
         }
-        recStack.remove(src);
+        recstack[start]=0;
         return false;
     }
 }
