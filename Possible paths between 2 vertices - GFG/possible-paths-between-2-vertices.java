@@ -37,22 +37,19 @@ class Solution {
     public int countPaths(int V, ArrayList<ArrayList<Integer>> adj, int source,
                    int destination) {
         // Code here
-        int visited[]=new int[V];
         int count[]=new int[1];
-        noOfPaths(source,destination,adj,V,visited,count);
+        noOfPaths(source,destination,adj,count);
         return count[0];
     }
     
-    private void noOfPaths(int start,int dest,ArrayList<ArrayList<Integer>> graph,int v,int visited[],int count[]){
+    private void noOfPaths(int start,int dest,ArrayList<ArrayList<Integer>> graph,int count[]){
         
         if(start==dest){
             count[0]++;
             return;
         }
         for(Integer itr1 : graph.get(start)){
-            if(visited[itr1]==0){
-                noOfPaths(itr1,dest,graph,v,visited,count);
-            }
+                noOfPaths(itr1,dest,graph,count);
         }
         return;
     }
