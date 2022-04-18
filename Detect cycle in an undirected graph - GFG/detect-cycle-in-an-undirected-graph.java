@@ -35,32 +35,28 @@ class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        HashSet<Integer> visited=new HashSet<>();
+        int visited[]=new int[V];
         for(int itr1=0;itr1<V;itr1++){
-         if(checkCyclic(itr1,adj,-1,visited)){
-             return true;
-         }
-         
-        }
-        return false;
-    }
-    
-    private boolean checkCyclic(int src,ArrayList<ArrayList<Integer>> graph,int parent,HashSet<Integer> vis ){
-        vis.add(src);
-        ArrayList<Integer> l1=graph.get(src);
-        
-        for(Integer itr1 : l1){
-            if(!vis.contains(itr1)){
-                if(checkCyclic(itr1,graph,src,vis)){
-                    return true;
-                }
-            }else{
-                if(parent!=itr1){
+            if(visited[itr1]==0){
+                if(checkCycle(itr1,visited,adj,-1)){
                     return true;
                 }
             }
         }
-        vis.remove(src);
+        return false;
+    }
+    
+    private boolean checkCycle(int start,int visited[], ArrayList<ArrayList<Integer>> graph,int parent){
+        visited[start]=1;
+        for(Integer itr1 : graph.get(start)){
+            if(visited[itr1]==0){
+                if(checkCycle(itr1,visited,graph,start)){
+                    return true;
+                }
+            }else if(parent !=itr1){
+                return true;
+            }
+        }
         return false;
     }
 }
