@@ -1,26 +1,22 @@
 class Solution {
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> answer=new ArrayList<>();
-        int visited[]=new int[graph.length];
-        pathsToTarget(0,graph.length-1,graph,answer,new ArrayList<Integer>(),visited);
+        traverseSrcToTarget(0,graph.length-1,answer,new ArrayList<Integer>(),graph);
         return answer;
     }
-    private void pathsToTarget(int start,int end,int[][] graph,List<List<Integer>> ans,List<Integer> temp,int[] visited){
-        visited[start]=1;
-        temp.add(start);
-        if(start==end){
-            ans.add(new ArrayList<Integer>(temp));
-            temp.remove(temp.size()-1);
-            visited[start]=0;
+    
+    private void traverseSrcToTarget(int src,int target,List<List<Integer>> ans,List<Integer> res,int graph[][]){
+        res.add(src);
+        if(src==target){
+            ans.add(new ArrayList<Integer>(res));
             return;
         }
-        for(int itr1 : graph[start]){
-            if(visited[itr1]==0){
-                pathsToTarget(itr1,end,graph,ans,temp,visited);
-            }
+        for(int itr1=0;itr1<graph[src].length;itr1++){
+            traverseSrcToTarget(graph[src][itr1],target,ans,res,graph);
+            res.remove(res.size()-1);
         }
-        temp.remove(temp.size()-1);
-        visited[start]=0;
+        
         return;
     }
+    
 }
