@@ -1,13 +1,10 @@
 class Solution {
     public boolean isBipartite(int[][] graph) {
-        int noOfNodes=graph.length;
-        int colorArr[]=new int[noOfNodes];
-        Arrays.fill(colorArr,-1);
-        
-        for(int itr1=0;itr1<noOfNodes;itr1++){
-            if(colorArr[itr1]==-1){
-                boolean flag=checkBipartite(itr1,graph,0,colorArr);
-                if(!flag){
+        int visited[]=new int[graph.length];
+        Arrays.fill(visited,-1);
+        for(int itr1=0;itr1<graph.length;itr1++){
+            if(visited[itr1]==-1){
+                if(!checkBipartite(itr1,0,visited,graph)){
                     return false;
                 }
             }
@@ -15,18 +12,20 @@ class Solution {
         return true;
     }
     
-    private boolean checkBipartite(int src,int[][] graph,int color,int colorArr[]){
-        colorArr[src]=color;
-        for(int itr1 : graph[src]){
-            if(colorArr[itr1]==-1){
-                int clr=color==0?1:0;
-                if(!checkBipartite(itr1,graph,clr,colorArr)){
-                    return false;
-                }
+    private boolean checkBipartite(int src,int color,int visited[],int graph[][]){
+        
+        if(visited[src]!=-1){
+            if(visited[src]==color){
+                return true;
             }else{
-                if(colorArr[itr1]==colorArr[src]){
-                    return false;
-                }
+                return false;
+            }
+        }
+        visited[src]=color;
+        color=color==0?1:0;
+        for(int itr1=0;itr1<graph[src].length;itr1++){
+            if(!checkBipartite(graph[src][itr1],color,visited,graph)){
+                return false;
             }
         }
         return true;
