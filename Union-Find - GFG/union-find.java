@@ -66,34 +66,42 @@ public class GFG {
 class Solution
 {
     //Function to merge two nodes a and b.
-    public void union_(int a, int b, int par[], int rank[])
+    public void union_(int a, int b, int parent[], int rank[])
     {
         // add your code here
-        a=findPar(a,par);
-        b=findPar(b,par);
-        if(rank[a]<rank[b]) {
-            par[a]=b;
-        } else if(rank[a]>rank[b]) {
-            par[b]=a;
-        } else {
-            par[b]=a;
-            rank[a]++;
+        int p1=findParent(a,parent);
+        int p2=findParent(b,parent);
+        
+        int r1=rank[p1];
+        int r2=rank[p2];
+        
+        if(r1>r2){
+            parent[p2]=p1;
+            
+        }else if(r1<r2){
+            parent[p1]=p2;
+        }else{
+            parent[p2]=p1;
+            rank[p1]++;
         }
+        return;
     }
 
     //Function to check whether 2 nodes are connected or not.
-    public boolean isConnected(int a, int b, int par[], int rank[])
+    public Boolean isConnected(int a, int b, int parent[], int rank[])
     {
         // add your code here
-        return (findPar(a,par)==findPar(b,par));
+        int p1=findParent(a,parent);
+        int p2=findParent(b,parent);
+       return p1==p2;
     }
     
-    int findPar(int node,int[] par) {
-        // compression
-        if(node==par[node])
-            return node;
-        par[node]=findPar(par[node],par);
-        return par[node];
+    int findParent(int a,int parent[]){
+        if(parent[a]==a){
+            return a;
+        }
+        parent[a]= findParent(parent[a],parent);
+        return parent[a];
     }
 
 }
