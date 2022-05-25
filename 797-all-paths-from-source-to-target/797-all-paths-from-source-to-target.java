@@ -1,22 +1,24 @@
 class Solution {
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> answer=new ArrayList<>();
-        traverseSrcToTarget(0,graph.length-1,answer,new ArrayList<Integer>(),graph);
+        
+        getAllPaths(0,graph.length-1,graph,answer,new ArrayList<Integer>());
         return answer;
     }
     
-    private void traverseSrcToTarget(int src,int target,List<List<Integer>> ans,List<Integer> res,int graph[][]){
+    private void getAllPaths(int src,int target,int graph[][],List<List<Integer>> ans,ArrayList<Integer> res){
         res.add(src);
         if(src==target){
-            ans.add(new ArrayList<Integer>(res));
+            ans.add(new ArrayList(res));
+            res.remove(res.size()-1);
             return;
         }
-        for(int itr1=0;itr1<graph[src].length;itr1++){
-            traverseSrcToTarget(graph[src][itr1],target,ans,res,graph);
-            res.remove(res.size()-1);
-        }
         
+        
+        for(int itr1 : graph[src]){
+            getAllPaths(itr1,target,graph,ans,res);
+        }
+        res.remove(res.size()-1);
         return;
     }
-    
 }
