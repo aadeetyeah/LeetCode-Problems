@@ -1,5 +1,5 @@
 # Union-Find
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">This problem is to implement disjoint set union. There will be 2 incomplete functions namely union and find. You have to complete these functions.&nbsp;</span></p>
 
