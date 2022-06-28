@@ -1,17 +1,18 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> l1=new ArrayList<>();
-        powerSet(0,nums,l1,new ArrayList<Integer>());
-        return l1;
+        List<List<Integer>> answer=new ArrayList<>();
+        makeSubset(nums,0,new ArrayList<>(),answer);
+        return answer;
     }
-    public void powerSet(int start,int nums[],List<List<Integer>> l1,List<Integer> currentList){
-        if(start>=nums.length){
-            l1.add(new ArrayList(currentList));
+    
+    private void makeSubset(int[] nums,int index,ArrayList<Integer> output,List<List<Integer>> answer){
+        if(index>=nums.length){
+            answer.add(new ArrayList<Integer>(output));
             return;
         }
-        currentList.add(nums[start]);
-        powerSet(start+1,nums,l1,currentList);
-        currentList.remove(currentList.size()-1);
-        powerSet(start+1,nums,l1,currentList);
+        makeSubset(nums,index+1,new ArrayList<Integer>(output),answer);
+        output.add(nums[index]);
+        makeSubset(nums,index+1,output,answer);
+        return;
     }
 }
