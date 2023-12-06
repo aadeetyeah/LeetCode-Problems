@@ -33,28 +33,19 @@ public class Main {
 class Solution {
     int findMaxSum(int arr[], int n) {
         // code here
-        Map<Integer,Integer> memo = new HashMap<>();
-        return maxNonAdjSum(arr,n-1,memo);
-    }
-    
-    private int maxNonAdjSum(int arr[],int index,Map<Integer,Integer> memo){
-        if(index==0){
-            return arr[0];
+        int dp[]=new int[n];
+        dp[0]= arr[0];
+        
+        for(int itr1=1;itr1<n;itr1++){
+            
+            int pick = arr[itr1];
+            if(itr1>1){
+                pick += dp[itr1-2];
+            }
+            int notPick = dp[itr1-1];
+            
+            dp[itr1] = Math.max(pick,notPick);
         }
-        
-        if(index<0){
-            return 0;
-        }
-        
-        if(memo.containsKey(index)){
-            return memo.get(index);
-        }
-        
-        int select = arr[index] + maxNonAdjSum(arr,index-2,memo);
-        int noSelect = maxNonAdjSum(arr,index-1,memo);
-        
-        int res = Math.max(select, noSelect);
-        memo.put(index,res);
-        return res;
+        return dp[n-1];
     }
 }
