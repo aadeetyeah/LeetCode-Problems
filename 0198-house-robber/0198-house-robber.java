@@ -1,8 +1,23 @@
 class Solution {
-    public int rob(int[] nums) {
-        int dp[]=new int[nums.length+1];
-        Arrays.fill(dp,-1);
-        return robAdj(nums,nums.length-1,dp);
+    public int rob(int[] arr) {
+        // int dp[]=new int[nums.length+1];
+        // Arrays.fill(dp,-1);
+        // return robAdj(nums,nums.length-1,dp);
+        
+        int dp[]=new int[arr.length];
+        dp[0]= arr[0];
+        int n = arr.length;
+        for(int itr1=1;itr1<arr.length;itr1++){
+            
+            int pick = arr[itr1];
+            if(itr1-2>=0){
+                pick += dp[itr1-2];
+            }
+            int notPick = dp[itr1-1];
+            
+            dp[itr1] = Math.max(pick,notPick);
+        }
+        return dp[n-1];
     }
     
     private int robAdj(int nums[],int index,int dp[]){
