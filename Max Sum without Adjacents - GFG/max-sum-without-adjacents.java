@@ -39,7 +39,7 @@ class Solution {
         for(int itr1=1;itr1<n;itr1++){
             
             int pick = arr[itr1];
-            if(itr1>1){
+            if(itr1-2>=0){
                 pick += dp[itr1-2];
             }
             int notPick = dp[itr1-1];
