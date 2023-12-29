@@ -10,22 +10,44 @@
  * }
  */
 public class Solution {
+//     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+//         ArrayList<ListNode> cache = new ArrayList<>();
+        
+//         ListNode temp = headA;
+//         while(temp!=null){
+//             cache.add(temp);
+//             temp=temp.next;
+//         }
+        
+//         temp=headB;
+//         while(temp!=null){
+//             if(cache.contains(temp)){
+//                 return temp;
+//             }
+//             temp=temp.next;
+//         }
+//         return null;
+//     }
+    
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ArrayList<ListNode> cache = new ArrayList<>();
         
-        ListNode temp = headA;
-        while(temp!=null){
-            cache.add(temp);
-            temp=temp.next;
-        }
+        ListNode tempA= headA;
+        ListNode tempB= headB;
         
-        temp=headB;
-        while(temp!=null){
-            if(cache.contains(temp)){
-                return temp;
+        while(tempA!=tempB){
+            
+            if(tempA==null){
+                tempA=headB;
+            }else{
+                tempA=tempA.next;
             }
-            temp=temp.next;
+            
+            if(tempB==null){
+                tempB=headA;
+            }else{
+                tempB=tempB.next;
+            }
         }
-        return null;
+        return tempA;
     }
 }
