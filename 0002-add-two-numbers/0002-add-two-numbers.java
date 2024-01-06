@@ -57,20 +57,7 @@ class Solution {
         if(carry!=0){
             newList.next = new ListNode(carry);
         }
-//         while(temp2 != null){
-//             int num = temp2.val + carry;
-            
-//             carry = 0;
-//             if(num > 9){
-//                 carry = num/10;
-//                 num = num%10;
-//             }
-//             ListNode newNode = new ListNode(num);
-//             newList.next = newNode;
-//             newList = newList.next;
-            
-//             temp2 = temp2.next;
-//         }
+
         return newHead;
     }
 }
