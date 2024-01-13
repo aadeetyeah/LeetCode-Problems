@@ -19,7 +19,7 @@ class MyLinkedList {
         Node temp = head;
         for(int i = 0;i<index;i++)
            temp = temp.next;
-        return temp != null ? temp.value : 0; 
+        return temp.value; 
     }
     
     public void addAtHead(int val) {
