@@ -11,6 +11,13 @@
 class Solution {
     public ListNode reverseList(ListNode head) {
         
+        // return reverseListItr(head);
+        ListNode newHead  = null;
+        return reverseRecursive(head,null,newHead);
+    }
+    
+    private ListNode reverseListItr(ListNode head){
+        
         ListNode cur    =   null;
         ListNode prev   =   null;
         ListNode next   =   null;
@@ -25,4 +32,17 @@ class Solution {
         }
         return cur;
     }
+    
+    private ListNode reverseRecursive(ListNode head,ListNode prev, ListNode newHead){
+        if(head == null){
+            return null;
+        }
+        newHead = reverseRecursive(head.next,head,newHead);
+        if(head.next==null){
+            newHead = head;
+        }
+        head.next = prev;
+        return newHead;
+    }
 }
+
