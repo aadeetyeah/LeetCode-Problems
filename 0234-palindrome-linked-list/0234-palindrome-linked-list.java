@@ -9,7 +9,39 @@
  * }
  */
 class Solution {
-    public boolean isPalindrome(ListNode head) {
+     public boolean isPalindrome(ListNode head) {
+        //return checkPalindrome(head);
+         if(head.next == null){
+             return true;
+         }
+         ListNode temp = checkPalindromeRecursive(head,head);
+         if(temp != null){
+             return true;
+         }
+         return false;
+     }
+    
+    private ListNode checkPalindromeRecursive(ListNode head1,ListNode head2) {
+        if(head1.next == null){
+            if(head1.val == head2.val){
+                return head2.next;
+            }else{
+                return null;
+            }
+        }
+        ListNode temp = checkPalindromeRecursive(head1.next,head2);
+        if(temp!= null && temp.val == head1.val){
+            
+            if(temp.val == head2.val && temp.next==null){
+                return temp;
+            }
+            return temp.next;
+        }
+        return null;
+    }
+    
+    
+    private boolean checkPalindrome(ListNode head) {
         
         ListNode fast = head;
         ListNode slow = head;
