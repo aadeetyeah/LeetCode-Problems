@@ -10,6 +10,26 @@
  */
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
+    
+        // return removeElementsIterative(head,val);
+        return removeElementsRecursive(head,val);
+    }
+    
+    private ListNode removeElementsRecursive(ListNode head, int val){
+        
+        if(head==null){
+            return null;
+        }
+        if(head.val == val){
+            return removeElementsRecursive(head.next,val);
+        }
+        
+        head.next = removeElementsRecursive(head.next,val);
+        return head;
+    }
+    
+    
+    public ListNode removeElementsIterative(ListNode head, int val) {
         
         ListNode temp=head;
         ListNode prev=null;
