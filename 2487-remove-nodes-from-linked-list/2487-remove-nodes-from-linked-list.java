@@ -9,7 +9,24 @@
  * }
  */
 class Solution {
+    
+    
     public ListNode removeNodes(ListNode head) {
+        return removeNodesRecursive(head);
+    }
+    
+    public ListNode removeNodesRecursive(ListNode head) {
+        if(head.next == null){
+            return head;
+        }
+        head.next = removeNodesRecursive(head.next);
+        if(head.val < head.next.val){
+            return head.next;
+        }
+        return head;
+    }
+    
+    public ListNode removeNodesIterative(ListNode head) {
         
         
         ListNode revList = reverse(head);
