@@ -10,7 +10,25 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-        
+     
+        //return swapIterative(head);
+        head = swapRecursive(head);
+        return head;
+    }
+    
+    private ListNode swapRecursive(ListNode head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode temp = head.next;
+        head.next = temp.next;
+        temp.next = head;
+        head = temp;
+        head.next.next = swapRecursive(head.next.next);
+        return head;
+    }
+    
+    public ListNode swapIterative(ListNode head){
         ListNode temp = head;
         ListNode prev = null;
         ListNode next = null;
