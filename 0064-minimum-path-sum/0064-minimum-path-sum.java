@@ -1,28 +1,25 @@
 class Solution {
     public int minPathSum(int[][] grid) {
-        
-        
-        Map<String,Integer> memo = new HashMap<>();
-        return minPath(grid,grid.length-1,grid[0].length-1,memo);
+        int row = grid.length;
+        int col = grid[0].length;
+        Map<String,Integer> map = new HashMap<>();
+        return minPathSum(grid,row-1,col-1,map);
     }
-    
-    private int minPath(int grid[][],int row,int col,Map<String,Integer> memo){
-        
-        if(row==0 && col==0){
+
+    private int minPathSum(int[][] grid,int row, int col,Map<String,Integer> map){
+        if(row == 0 && col == 0){
             return grid[0][0];
         }
         if(row<0 || col<0){
-            return Integer.MAX_VALUE;
+            return (int) 1e9;
         }
         String key = Integer.toString(row)+"_"+Integer.toString(col);
-        
-        if(memo.containsKey(key)){
-            return memo.get(key);
+        if(map.containsKey(key)){
+            return map.get(key);
         }
-        
-        int up = minPath(grid,row-1,col,memo);
-        int left = minPath(grid,row,col-1,memo);
-        memo.put(key,grid[row][col]+Math.min(up,left));
-        return memo.get(key);
+        int up = grid[row][col] + minPathSum(grid,row-1,col,map);
+        int left = grid[row][col] + minPathSum(grid,row,col-1,map);
+        map.put(key,Math.min(up,left));
+        return map.get(key);
     }
 }
