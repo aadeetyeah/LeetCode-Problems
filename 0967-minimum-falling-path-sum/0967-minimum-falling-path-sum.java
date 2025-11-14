@@ -1,0 +1,51 @@
+class Solution {
+    public int minFallingPathSum(int[][] matrix) {
+        return minPathIterative(matrix);
+    }
+
+    private int minPathIterative(int[][] mat){
+        int row = mat.length;
+        int col = mat[0].length;
+        int dp[][] = new int[row][col];
+        
+        for(int itr1=0; itr1< col; itr1++){
+            dp[0][itr1] = mat[0][itr1];
+        }
+        
+        for(int itr1=1; itr1<row;itr1++){
+            for(int itr2=0;itr2<col;itr2++){
+                int left = (int) 1e9;
+                int right = (int) 1e9;
+                if(itr2>0)
+                    left = mat[itr1][itr2] + dp[itr1-1][itr2-1];
+                int down = mat[itr1][itr2] + dp[itr1-1][itr2];
+                if(itr2+1<col)
+                    right = mat[itr1][itr2]+ dp[itr1-1][itr2+1];
+                dp[itr1][itr2] = Math.min(Math.min(left,down),right);
+            }
+        }
+        int min = (int) 1e9;
+        for(int itr1 =0;itr1<col;itr1++){
+            min = Math.min(min,dp[row-1][itr1]);
+        }
+        return min;   
+    }
+    
+    private int maxPath(int row, int col, int[][] matrix,int dp[][]){
+        if(col < 0 || col>= matrix[0].length){
+            return (int) -1e9;
+        }
+        if(row == 0){
+            return matrix[row][col];
+        }
+        if(dp[row][col]!=0){
+            return dp[row][col];
+        }
+        
+        int left = matrix[row][col] + maxPath(row-1,col-1,matrix,dp);
+        int up = matrix[row][col] + maxPath(row-1,col,matrix,dp);
+        int right = matrix[row][col] + maxPath(row-1,col+1,matrix,dp);
+        dp[row][col] = Math.max(Math.max(left,up),right);
+        return dp[row][col];
+    }
+}
