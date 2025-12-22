@@ -15,6 +15,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0064-minimum-path-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0064-minimum-path-sum) |
 | [0120-triangle](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0120-triangle) |
 | [0416-partition-equal-subset-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0416-partition-equal-subset-sum) |
+| [0494-target-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0494-target-sum) |
 | [0967-minimum-falling-path-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0967-minimum-falling-path-sum) |
 ## Combinatorics
 |  |
@@ -27,6 +28,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0064-minimum-path-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0064-minimum-path-sum) |
 | [0120-triangle](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0120-triangle) |
 | [0416-partition-equal-subset-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0416-partition-equal-subset-sum) |
+| [0494-target-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0494-target-sum) |
 | [0967-minimum-falling-path-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0967-minimum-falling-path-sum) |
 ## Matrix
 |  |
@@ -34,4 +36,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0063-unique-paths-ii](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0063-unique-paths-ii) |
 | [0064-minimum-path-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0064-minimum-path-sum) |
 | [0967-minimum-falling-path-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0967-minimum-falling-path-sum) |
+## Backtracking
+|  |
+| ------- |
+| [0494-target-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0494-target-sum) |
 <!---LeetCode Topics End-->
