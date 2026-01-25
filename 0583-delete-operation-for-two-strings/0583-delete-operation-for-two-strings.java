@@ -35,12 +35,6 @@ class Solution {
                 }
             }
         }
-        for(int dp1[] : dp){
-            for(int d: dp1){
-            System.out.print(d+" ");
-            }
-            System.out.println();
-        }
         return dp[s1.length()][s2.length()];
     }
 
