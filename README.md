@@ -16,6 +16,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0120-triangle](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0120-triangle) |
 | [0416-partition-equal-subset-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0416-partition-equal-subset-sum) |
 | [0494-target-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0494-target-sum) |
+| [0516-longest-palindromic-subsequence](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0516-longest-palindromic-subsequence) |
 | [0518-coin-change-ii](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0518-coin-change-ii) |
 | [0967-minimum-falling-path-sum](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0967-minimum-falling-path-sum) |
 | [1143-longest-common-subsequence](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/1143-longest-common-subsequence) |
@@ -46,5 +47,6 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## String
 |  |
 | ------- |
+| [0516-longest-palindromic-subsequence](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/0516-longest-palindromic-subsequence) |
 | [1143-longest-common-subsequence](https://github.com/aadeetyeah/LeetCode-Problems/tree/master/1143-longest-common-subsequence) |
 <!---LeetCode Topics End-->
